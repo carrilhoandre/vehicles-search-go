@@ -1,0 +1,55 @@
+version: '3'
+services:
+  elasticsearch:
+    container_name: ElasticSearch    
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.7.0
+    environment: 
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - network.host=0.0.0.0
+      - cluster.name="elastic_stack_logging"
+      - node.name="elastic_stack_logging_data"
+      - discovery.zen.minimum_master_nodes=1
+      - http.cors.enabled=true
+      - http.cors.allow-origin="*"
+    volumes: 
+      - elasticsearch_data:/usr/share/elasticsearch/data      
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -I -s -L http://localhost:9200 || exit 1"]
+      interval: 30s
+      timeout: 20s
+      retries: 5     
+    networks:
+      - search
+  kibana:
+    container_name: Kibana    
+    image: docker.elastic.co/kibana/kibana-oss:6.7.0
+    environment:
+      - server.name=kibana
+      - server.host="0"
+      - elasticsearch.url=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch:elasticsearch
+    ports:
+      - "5601:5601"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -I -s -L http://localhost:5601/ || exit 1"]
+      interval: 30s
+      timeout: 20s
+      retries: 5     
+    networks:
+      - search
+volumes:
+  mq_data:
+  elasticsearch_data:
+
+networks:
+  search:
+    driver: bridge

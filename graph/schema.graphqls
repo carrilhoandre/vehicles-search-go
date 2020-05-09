@@ -1,0 +1,33 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Make {
+  id: ID!
+  name: String!
+  models: [Model!]!
+}
+
+type Model {
+  id: ID!
+  name: String!
+  versions: [Version!]!
+}
+
+type Version {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  makes: [Make!]!
+}
+
+input NewMake {
+  name: String!
+}
+
+type Mutation {
+  createMake(input: NewMake!): Make!
+}
+
