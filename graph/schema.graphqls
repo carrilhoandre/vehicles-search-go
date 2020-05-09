@@ -2,32 +2,22 @@
 #
 # https://gqlgen.com/getting-started/
 
-type Make {
+type Vehicle {
   id: ID!
-  name: String!
-  models: [Model!]!
-}
-
-type Model {
-  id: ID!
-  name: String!
-  versions: [Version!]!
-}
-
-type Version {
-  id: ID!
-  name: String!
+  makeId: ID!
+  makeName: String!
+  modelName: String!
 }
 
 type Query {
-  makes: [Make!]!
+  vehicles(text: String = ""): [Vehicle!]!
 }
 
-input NewMake {
-  name: String!
+input NewQuery {
+  text: String!
+  id: ID!
 }
 
 type Mutation {
-  createMake(input: NewMake!): Make!
+  createMake(input: NewQuery!): Vehicle!
 }
-
