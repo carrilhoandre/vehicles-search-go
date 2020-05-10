@@ -28,9 +28,9 @@ func (r *queryResolver) Vehicles(ctx context.Context, text *string) ([]*model.Ve
 	queryJs, err2 := json.Marshal(queryStr)
 
 	if err1 != nil || err2 != nil {
-		fmt.Println("[esclient][GetResponse]err during query marshal=", err1, err2)
+		fmt.Println("[esclient][GetResponse]err during query marshal=", err1, err2, queryJs)
 	}
-	fmt.Println("[esclient]Final ESQuery=\n", string(queryJs))
+	//fmt.Println("[esclient]Final ESQuery=\n", string(queryJs))
 
 	searchService := esclient.Search().Index("vehicle").SearchSource(searchSource)
 	searchResult, err := searchService.Do(ctx)
@@ -79,9 +79,6 @@ func GetESClient() (*elastic.Client, error) {
 	client, err := elastic.NewClient(elastic.SetURL("http://localhost:9200"),
 		elastic.SetSniff(false),
 		elastic.SetHealthcheck(false))
-
-	fmt.Println("ES initialized...")
-
 	return client, err
 
 }

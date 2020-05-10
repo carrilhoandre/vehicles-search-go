@@ -52,8 +52,6 @@ type ComplexityRoot struct {
 	}
 
 	Vehicle struct {
-		ID        func(childComplexity int) int
-		MakeID    func(childComplexity int) int
 		MakeName  func(childComplexity int) int
 		ModelName func(childComplexity int) int
 	}
@@ -104,20 +102,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.Vehicles(childComplexity, args["text"].(*string)), true
-
-	case "Vehicle.id":
-		if e.complexity.Vehicle.ID == nil {
-			break
-		}
-
-		return e.complexity.Vehicle.ID(childComplexity), true
-
-	case "Vehicle.makeId":
-		if e.complexity.Vehicle.MakeID == nil {
-			break
-		}
-
-		return e.complexity.Vehicle.MakeID(childComplexity), true
 
 	case "Vehicle.makeName":
 		if e.complexity.Vehicle.MakeName == nil {
@@ -202,8 +186,6 @@ var sources = []*ast.Source{
 # https://gqlgen.com/getting-started/
 
 type Vehicle {
-  id: ID!
-  makeId: ID!
   makeName: String!
   modelName: String!
 }
@@ -454,74 +436,6 @@ func (ec *executionContext) _Query___schema(ctx context.Context, field graphql.C
 	res := resTmp.(*introspection.Schema)
 	fc.Result = res
 	return ec.marshalO__Schema2ᚖgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐSchema(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _Vehicle_id(ctx context.Context, field graphql.CollectedField, obj *model.Vehicle) (ret graphql.Marshaler) {
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	fc := &graphql.FieldContext{
-		Object:   "Vehicle",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
-	}
-
-	ctx = graphql.WithFieldContext(ctx, fc)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNID2string(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _Vehicle_makeId(ctx context.Context, field graphql.CollectedField, obj *model.Vehicle) (ret graphql.Marshaler) {
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	fc := &graphql.FieldContext{
-		Object:   "Vehicle",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
-	}
-
-	ctx = graphql.WithFieldContext(ctx, fc)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.MakeID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNID2string(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Vehicle_makeName(ctx context.Context, field graphql.CollectedField, obj *model.Vehicle) (ret graphql.Marshaler) {
@@ -1765,16 +1679,6 @@ func (ec *executionContext) _Vehicle(ctx context.Context, sel ast.SelectionSet, 
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Vehicle")
-		case "id":
-			out.Values[i] = ec._Vehicle_id(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
-		case "makeId":
-			out.Values[i] = ec._Vehicle_makeId(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		case "makeName":
 			out.Values[i] = ec._Vehicle_makeName(ctx, field, obj)
 			if out.Values[i] == graphql.Null {

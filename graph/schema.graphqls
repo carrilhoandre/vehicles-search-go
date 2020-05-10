@@ -3,8 +3,6 @@
 # https://gqlgen.com/getting-started/
 
 type Vehicle {
-  id: ID!
-  makeId: ID!
   makeName: String!
   modelName: String!
 }

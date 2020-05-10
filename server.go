@@ -22,9 +22,9 @@ func main() {
 
 	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
 
-	r.Handle("/query", srv)
+	go r.Handle("/query", srv)
 	//http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	//http.Handle("/query", srv)
-	log.Println("server is running on port 3000")
-	log.Fatal(http.ListenAndServe(":3000", r))
+	log.Println("server is running on port 8080")
+	log.Fatal(http.ListenAndServe(":8080", r))
 }

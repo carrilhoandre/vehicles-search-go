@@ -8,8 +8,6 @@ type NewQuery struct {
 }
 
 type Vehicle struct {
-	ID        string `json:"id"`
-	MakeID    string `json:"makeId"`
 	MakeName  string `json:"makeName"`
 	ModelName string `json:"modelName"`
 }
