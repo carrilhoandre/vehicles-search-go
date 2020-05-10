@@ -20,6 +20,9 @@ func (r *mutationResolver) CreateMake(ctx context.Context, input model.NewQuery)
 func (r *queryResolver) Vehicles(ctx context.Context, text *string) ([]*model.Vehicle, error) {
 	var vehicles []*model.Vehicle
 	esclient, err := GetESClient()
+	if err != nil {
+		fmt.Println("[esclient] Cant connect", err)
+	}
 	searchSource := elastic.NewSearchSource()
 	q := elastic.NewMoreLikeThisQuery().LikeText(*text).Field("MakeName", "ModelName").MinTermFreq(1).MinDocFreq(1)
 	searchSource.Query(q)
@@ -75,8 +78,7 @@ type queryResolver struct{ *Resolver }
 //    it when you're done.
 //  - You have helper methods in this file. Move them out to keep these resolver files clean.
 func GetESClient() (*elastic.Client, error) {
-
-	client, err := elastic.NewClient(elastic.SetURL("http://localhost:9200"),
+	client, err := elastic.NewClient(elastic.SetURL("http://elasticsearch:9200"),
 		elastic.SetSniff(false),
 		elastic.SetHealthcheck(false))
 	return client, err

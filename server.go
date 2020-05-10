@@ -16,7 +16,7 @@ func main() {
 	r := chi.NewRouter()
 	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
 
-	go r.Handle("/query", srv)
+	r.Handle("/query", srv)
 	//http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	log.Println("server is running on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
