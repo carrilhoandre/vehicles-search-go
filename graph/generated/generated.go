@@ -12,7 +12,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
-	"github.com/carrilhoandre/webmotors-search-go/graph/model"
+	"github.com/carrilhoandre/vehicles-search-go/graph/model"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )
@@ -214,7 +214,7 @@ func (ec *executionContext) field_Mutation_createMake_args(ctx context.Context, 
 	args := map[string]interface{}{}
 	var arg0 model.NewQuery
 	if tmp, ok := rawArgs["input"]; ok {
-		arg0, err = ec.unmarshalNNewQuery2githubᚗcomᚋcarrilhoandreᚋwebmotorsᚑsearchᚑgoᚋgraphᚋmodelᚐNewQuery(ctx, tmp)
+		arg0, err = ec.unmarshalNNewQuery2githubᚗcomᚋcarrilhoandreᚋvehiclesᚑsearchᚑgoᚋgraphᚋmodelᚐNewQuery(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -325,7 +325,7 @@ func (ec *executionContext) _Mutation_createMake(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Vehicle)
 	fc.Result = res
-	return ec.marshalNVehicle2ᚖgithubᚗcomᚋcarrilhoandreᚋwebmotorsᚑsearchᚑgoᚋgraphᚋmodelᚐVehicle(ctx, field.Selections, res)
+	return ec.marshalNVehicle2ᚖgithubᚗcomᚋcarrilhoandreᚋvehiclesᚑsearchᚑgoᚋgraphᚋmodelᚐVehicle(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_vehicles(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -366,7 +366,7 @@ func (ec *executionContext) _Query_vehicles(ctx context.Context, field graphql.C
 	}
 	res := resTmp.([]*model.Vehicle)
 	fc.Result = res
-	return ec.marshalNVehicle2ᚕᚖgithubᚗcomᚋcarrilhoandreᚋwebmotorsᚑsearchᚑgoᚋgraphᚋmodelᚐVehicleᚄ(ctx, field.Selections, res)
+	return ec.marshalNVehicle2ᚕᚖgithubᚗcomᚋcarrilhoandreᚋvehiclesᚑsearchᚑgoᚋgraphᚋmodelᚐVehicleᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -1973,7 +1973,7 @@ func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.Selec
 	return res
 }
 
-func (ec *executionContext) unmarshalNNewQuery2githubᚗcomᚋcarrilhoandreᚋwebmotorsᚑsearchᚑgoᚋgraphᚋmodelᚐNewQuery(ctx context.Context, v interface{}) (model.NewQuery, error) {
+func (ec *executionContext) unmarshalNNewQuery2githubᚗcomᚋcarrilhoandreᚋvehiclesᚑsearchᚑgoᚋgraphᚋmodelᚐNewQuery(ctx context.Context, v interface{}) (model.NewQuery, error) {
 	return ec.unmarshalInputNewQuery(ctx, v)
 }
 
@@ -1991,11 +1991,11 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNVehicle2githubᚗcomᚋcarrilhoandreᚋwebmotorsᚑsearchᚑgoᚋgraphᚋmodelᚐVehicle(ctx context.Context, sel ast.SelectionSet, v model.Vehicle) graphql.Marshaler {
+func (ec *executionContext) marshalNVehicle2githubᚗcomᚋcarrilhoandreᚋvehiclesᚑsearchᚑgoᚋgraphᚋmodelᚐVehicle(ctx context.Context, sel ast.SelectionSet, v model.Vehicle) graphql.Marshaler {
 	return ec._Vehicle(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNVehicle2ᚕᚖgithubᚗcomᚋcarrilhoandreᚋwebmotorsᚑsearchᚑgoᚋgraphᚋmodelᚐVehicleᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Vehicle) graphql.Marshaler {
+func (ec *executionContext) marshalNVehicle2ᚕᚖgithubᚗcomᚋcarrilhoandreᚋvehiclesᚑsearchᚑgoᚋgraphᚋmodelᚐVehicleᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Vehicle) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2019,7 +2019,7 @@ func (ec *executionContext) marshalNVehicle2ᚕᚖgithubᚗcomᚋcarrilhoandre�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNVehicle2ᚖgithubᚗcomᚋcarrilhoandreᚋwebmotorsᚑsearchᚑgoᚋgraphᚋmodelᚐVehicle(ctx, sel, v[i])
+			ret[i] = ec.marshalNVehicle2ᚖgithubᚗcomᚋcarrilhoandreᚋvehiclesᚑsearchᚑgoᚋgraphᚋmodelᚐVehicle(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2032,7 +2032,7 @@ func (ec *executionContext) marshalNVehicle2ᚕᚖgithubᚗcomᚋcarrilhoandre�
 	return ret
 }
 
-func (ec *executionContext) marshalNVehicle2ᚖgithubᚗcomᚋcarrilhoandreᚋwebmotorsᚑsearchᚑgoᚋgraphᚋmodelᚐVehicle(ctx context.Context, sel ast.SelectionSet, v *model.Vehicle) graphql.Marshaler {
+func (ec *executionContext) marshalNVehicle2ᚖgithubᚗcomᚋcarrilhoandreᚋvehiclesᚑsearchᚑgoᚋgraphᚋmodelᚐVehicle(ctx context.Context, sel ast.SelectionSet, v *model.Vehicle) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")

@@ -1,4 +1,4 @@
-module github.com/carrilhoandre/webmotors-search-go
+module github.com/carrilhoandre/vehicles-search-go
 
 go 1.14
 

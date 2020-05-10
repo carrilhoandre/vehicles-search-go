@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/carrilhoandre/webmotors-search-go/graph"
-	"github.com/carrilhoandre/webmotors-search-go/graph/generated"
+	"github.com/carrilhoandre/vehicles-search-go/graph"
+	"github.com/carrilhoandre/vehicles-search-go/graph/generated"
 	"github.com/go-chi/chi"
 )
 

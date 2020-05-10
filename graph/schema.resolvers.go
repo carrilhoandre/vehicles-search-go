@@ -8,8 +8,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/carrilhoandre/webmotors-search-go/graph/generated"
-	"github.com/carrilhoandre/webmotors-search-go/graph/model"
+	"github.com/carrilhoandre/vehicles-search-go/graph/generated"
+	"github.com/carrilhoandre/vehicles-search-go/graph/model"
 	elastic "github.com/olivere/elastic/v7"
 )
 
