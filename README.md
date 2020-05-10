@@ -19,6 +19,17 @@ go run github.com/99designs/gqlgen
 	github.com/go-chi/chi v4.1.1 (Web api server)
 	github.com/olivere/elastic/v7 v7.0.15 (Elastic search connector)
 ---
+# How use
+Query example (graphql):
+POST localhost:8080/query
+{
+  vehicles(text:"fiesta")
+  {
+    makeName,
+    modelName
+  }
+}
+---
 ## Contributors
     - André Carrilho
 ---
