@@ -11,6 +11,17 @@ services:
       - elasticsearch:elasticsearch
     networks:
       - search
+  importapi:
+    container_name: importdataapi
+    image: andrecarrilho/es-vehicles-import
+    ports:
+      - "3001:80"
+    depends_on: 
+        - elasticsearch
+    links:
+         - elasticsearch:elasticsearch
+    networks:
+      - search
   elasticsearch:
     container_name: ElasticSearch    
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.7.0
