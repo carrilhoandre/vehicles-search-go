@@ -21,7 +21,7 @@ go run github.com/99designs/gqlgen
 ---
 # How use
 Query example (graphql):
-POST localhost:8080/query
+POST localhost:3000/query
 {
   vehicles(text:"fiesta")
   {
